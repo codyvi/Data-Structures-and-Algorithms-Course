@@ -16,7 +16,7 @@ int get_fibonacci_last_digit_naive(int n) {
     return current % 10;
 }
 
-long long fibonacci(long long f[], int n) 
+long long fibonacci(long long f[], long long n) 
 { 
 
     f[0] = 0; 
@@ -29,7 +29,7 @@ long long fibonacci(long long f[], int n)
 } 
  
 
-int get_fibonacci_last_digit_fast(int n)
+int get_fibonacci_last_digit_fast(long long n)
 {
     long long f[60] = {0}; 
 
@@ -39,7 +39,7 @@ int get_fibonacci_last_digit_fast(int n)
 }
 
 int main() {
-    int n;
+    long long n;
     std::cin >> n;
     int c = get_fibonacci_last_digit_fast(n);
     std::cout << c << '\n';
