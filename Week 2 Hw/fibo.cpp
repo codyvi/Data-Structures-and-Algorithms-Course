@@ -24,6 +24,8 @@ int fibonacci_naive(int n) {
 int fibonacci_fast(int n) {
     // write your code here
     
+
+
 	int i = 0;
 	int j = 1;
 	
@@ -34,6 +36,11 @@ int fibonacci_fast(int n) {
 			i = j;
 			j = t;
 		}
+
+    if(n == 0)
+    {
+        return 0;
+    }
 
 	return j;
 }
