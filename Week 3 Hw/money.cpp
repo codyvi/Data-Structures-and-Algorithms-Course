@@ -33,7 +33,7 @@ int get_change(int m) {
 
 int main() {
   int m;
-  cout << "Give me the n: ";
+  //cout << "Give me the n: ";
   cin >> m;
   cout << get_change(m) << '\n';
 }
