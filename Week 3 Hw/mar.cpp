@@ -1,73 +1,48 @@
-#include <algorithm>
-#include <iostream>
-#include <vector>
-#include <complex>
+#include<iostream>
+#include<vector>
+#include<algorithm>
 
-using std::vector;
+/*
+    ***************SAFE MOVE****************
+    => Sort given arrays
+    ***************ALGORITHM****************
+    => Multiply elements from each array
+        corresponding to their positions
+        and add them to final result
+    => Return result
+*/
 
-bool compare(int a, int b)
+using namespace std;
+
+main()
 {
-    return a > b;
-}
+    long final_sum = 0;
+    int no_of_ads = 0;
+    //cout<<"Give no. of ads:";
+    cin>>no_of_ads;
 
-long long max_dot_product(vector<int> a, vector<int> b, size_t n) {
-  // write your code here
-  long long result = 0;
-  size_t x, y, i = 0, min, max;
-  while(a[i] > 0 && b[i] > 0)
-  {
-      result = result + ((long long)a[i]) * b[i];
-      i++;
-  }
-  x = i;
-  
-  i = n - 1;
-  
-  while(a[i] < 0 && b[i] < 0)
-  {
-      result = result + ((long long)a[i]) * b[i];
-      i--;
-  }
-  y = i;
-  
-  if(x != (y+1))
-  {
-      if(x > y)
-      {
-        min  = y;
-        max = x;
-      }
-      else
-      {
-        min  = x;
-        max = y;
-      }
-  
-      for(i = min; i <=  max; i++)
-      {
-        result = result + ((long long)a[i]) * b[i];
-      }
-  }
-  
-  
-  return result;
-}
+    vector<long> profit_per_click(no_of_ads);
+    vector<long> avg_click_in_slot(no_of_ads);
 
-int main() {
-  size_t n;
-  int input;
-  std::cin >> n;
-  vector<int> a(n), b(n);
-  for (size_t i = 0; i < n; i++) {
-    std::cin >> a[i];
-  }
-  for (size_t i = 0; i < n; i++) {
-    std::cin >> b[i];
-  }
-  
-  std::sort(a.begin(),a.end(),compare);
-  std::sort(b.begin(),b.end(),compare);
-  
-  
-  std::cout << max_dot_product(a, b, n) << std::endl;
-}
+    //cout<<"Give profit per click on i-th ad";
+    for(int i = 0; i < no_of_ads; i++)
+    {
+        cin>>profit_per_click[i];
+    }
+
+    //cout<<"Give average click per day in i-th slot:";
+    for(int i = 0; i < no_of_ads; i++)
+    {
+        cin>>avg_click_in_slot[i];
+    }
+
+    sort(profit_per_click.begin(), profit_per_click.end());
+    sort(avg_click_in_slot.begin(), avg_click_in_slot.end());
+
+    //cout<<"Maximum revenue will be:";
+    for(int i = 0; i < no_of_ads; i++)
+    {
+        final_sum += profit_per_click[i] * avg_click_in_slot[i];
+    }
+    cout<<final_sum<<'\n';
+}  
