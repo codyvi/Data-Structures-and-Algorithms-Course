@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using std::cin;
 using std::cout;
@@ -8,34 +9,24 @@ using std::max;
 
 using namespace std;
 
-int compute_min_refills(int dist, int tank, int n,vector<int> & stops) 
+int compute_min_refills(int target, int startFuel,vector<int> & stations) 
 {
-    // write your code here
-    int numRefills = 0; 
-    int currentRefill = 0;
-    int lastRefill = 0;
-    while(currentRefill <= n-1)
+    //Write your code here
+    priority_queue<int> pq;
+    int ret = 0, stationId = 0, range = startFuel;
+    while (range < target) 
     {
-        lastRefill = currentRefill;
-        while((currentRefill <= n) && (stops[currentRefill + 1] - stops[lastRefill] <= tank))
+        while (stationId < stations.size() && stations[stationId] <= range) 
         {
-            currentRefill++;
-
+                pq.push(stations[stationId++]);
+            }
+            if (pq.empty()) 
+                return -1;
+            range += pq.top();
+            pq.pop();
+            ++ret;
         }
-
-        if(currentRefill == lastRefill)
-        {
-            return -1;
-        }
-
-        if(currentRefill <= n )
-        {
-            //cout << "Entre" << endl;
-            numRefills++;
-        }
-    }
-
-    return numRefills;
+        return ret;
 }
 
 
@@ -56,7 +47,7 @@ int main()
 
 
 
-    cout << compute_min_refills(d, m, n,stops) << "\n";
+    cout << compute_min_refills(d, m,stops) << "\n";
 
     return 0;
 }
