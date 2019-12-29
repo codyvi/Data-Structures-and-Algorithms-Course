@@ -32,8 +32,7 @@ long long _mergeSort(vector<int> &a, int temp[], int left, int right)
 } 
 
 
-long long merge(vector<int> &a, int temp[], int left, 
-		int mid, int right) 
+long long merge(vector<int> &a, int temp[], int left, int mid, int right) 
 { 
 	int i, j, k; 
 	int inv_count = 0; 
