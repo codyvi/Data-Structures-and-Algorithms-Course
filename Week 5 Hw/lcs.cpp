@@ -1,10 +1,11 @@
 #include <iostream>
+#include <vector>
 
-using namespace std;
+using std::vector;
 
-int getlcs(string s1, string s2, int t1, int t2)
-{ 
-   int DP[t1+1][t2+1]; 
+int lcs2(vector<int> &a, vector<int> &b, int t1, int t2) {
+  //write your code here
+  int DP[t1+1][t2+1]; 
 
    for (int i=0; i<=t1; i++) 
    { 
@@ -12,7 +13,7 @@ int getlcs(string s1, string s2, int t1, int t2)
      { 
        if (i == 0 || j == 0) DP[i][j] = 0; 
     
-       else if (s1[i-1] == s2[j-1]) 
+       else if (a[i-1] == b[j-1]) 
        {
          DP[i][j] = DP[i-1][j-1] + 1; 
        }
@@ -25,25 +26,22 @@ int getlcs(string s1, string s2, int t1, int t2)
    } 
      
    return DP[t1][t2]; 
-} 
-  
-int main() 
-{ 
-    int c;
-    int cases = 1;
-    cin >> c;
-    while(c)
-    {
-        string s1, s2;
-        cin >> s1 >> s2;
-        
-        int t1 = s1.length();
-        int t2 = s2.length(); 
-        
-        cout << "Case " << cases << ": "<< getlcs( s1, s2, t1, t2 ) << endl;
-        c--;
-        cases++;
-    }
-    
-    return 0; 
-} 
+}
+
+int main() {
+  size_t n;
+  std::cin >> n;
+  vector<int> a(n);
+  for (size_t i = 0; i < n; i++) {
+    std::cin >> a[i];
+  }
+
+  size_t m;
+  std::cin >> m;
+  vector<int> b(m);
+  for (size_t i = 0; i < m; i++) {
+    std::cin >> b[i];
+  }
+
+  std::cout << lcs2(a, b,n,m) << std::endl;
+}
