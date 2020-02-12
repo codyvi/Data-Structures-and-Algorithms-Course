@@ -21,29 +21,7 @@ int fibonacci_naive(int n) {
     return fibonacci_naive(n - 1) + fibonacci_naive(n - 2);
 }
 
-int fibonacci_fast(int n) {
-    // write your code here
-    
 
-
-	int i = 0;
-	int j = 1;
-	
-	for (int k = 1; k < n; k++)
-		{	
-			int t;
-			t = i + j;
-			i = j;
-			j = t;
-		}
-
-    if(n == 0)
-    {
-        return 0;
-    }
-
-	return j;
-}
 
 void test_solution() {
     assert(fibonacci_fast(3) == 2);
